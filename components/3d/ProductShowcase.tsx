@@ -1,0 +1,7 @@
+"use client";
+import {Canvas} from "@react-three/fiber";
+import {Float,OrbitControls,Environment} from "@react-three/drei";
+import {Suspense} from "react";
+import {useReducedMotion} from "framer-motion";
+function Scene(){const reduced=useReducedMotion();return <><ambientLight intensity={1.2}/><directionalLight position={[4,5,5]} intensity={2.5}/><pointLight position={[-3,-2,2]} color="#8B5CF6" intensity={25}/><Float speed={reduced?0:1.4} rotationIntensity={reduced?0:.5}><mesh><boxGeometry args={[1.25,1.25,1.25]}/><meshStandardMaterial color="#8B5CF6" metalness={.65} roughness={.2}/></mesh></Float><mesh rotation={[1.1,.2,.3]}><torusGeometry args={[1.25,.035,20,120]}/><meshStandardMaterial color="#06B6D4" metalness={.8} emissive="#06B6D4" emissiveIntensity={.3}/></mesh><mesh position={[1.35,.8,-.5]}><icosahedronGeometry args={[.3,1]}/><meshStandardMaterial color="#C084FC" metalness={.6}/></mesh><Environment preset="city"/><OrbitControls enablePan={false} enableZoom={false} autoRotate={!reduced}/></>}
+export default function ProductShowcase(){return <div className="relative h-[300px] overflow-hidden rounded-[20px] border border-white/10 bg-white/[.03] sm:h-[430px]"><div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,.18),transparent_65%)]"/><Suspense fallback={<p className="p-8 text-white/50">Loading 3D...</p>}><Canvas camera={{position:[0,0,5],fov:45}}><Scene/></Canvas></Suspense><p className="absolute bottom-5 left-5 text-xs tracking-[.25em] text-cyan-200">PRITOMX / 3D EXPERIENCE</p></div>}
